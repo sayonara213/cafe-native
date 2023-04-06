@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { AuthText } from './auth.styled';
 
 const Auth: React.FC = () => {
   return (
     <View>
-      <Text>123</Text>
+      <AuthText>123</AuthText>
     </View>
   );
 };
