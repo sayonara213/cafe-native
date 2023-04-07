@@ -8,9 +8,9 @@ interface CustomInputProps extends TextInputProps {
 
 const PLACEHOLDER = () => ({
   default: css`
-    left: 15px;
+    left: 14px;
     top: 12px;
-    font-size: 14px;
+    font-size: 16px;
   `,
   focused: css`
     left: 10px;
@@ -26,7 +26,6 @@ export const CustomInputContainer = styled.View`
   border-radius: 4px;
   border-width: 1px;
   border-color: ${({ theme }) => theme.colors.borderNotActive};
-  margin-top: 10px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -47,7 +46,7 @@ export const CustomInputPlaceholder = styled.Text<CustomInputProps>`
 export const CustomInput = styled.TextInput`
   width: 280px;
 
-  font-size: ${({ theme }) => theme.fontSize.regular};
+  font-size: ${({ theme }) => theme.fontSize.medium};
   font-family: ${({ theme }) => theme.fontFamily.regular};
   color: ${({ theme }) => theme.colors.secondary};
 `;
@@ -55,4 +54,8 @@ export const CustomInput = styled.TextInput`
 export const Image = styled.Image`
   width: 20px;
   height: 20px;
+`;
+
+export const DissmissKeyboard = styled.TouchableWithoutFeedback`
+  width: 100%;
 `;

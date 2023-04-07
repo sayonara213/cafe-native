@@ -1,39 +1,60 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import CustomText from '@components/atoms/CustomText/CustomText';
-import CustomButton from './../../components/atoms/CustomButton/CustomButton';
-import CustomInput from './../../components/atoms/CustomInput/CustomInput';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { ICON_MAP } from '@assets/icons';
+
+import { Formik } from 'formik';
+
+import CustomButton from '@components/atoms/CustomButton/CustomButton';
+import CustomInput from '@components/atoms/CustomInput/CustomInput';
+import { HideKeyboard } from '@components/atoms/CustomInput/HideKeyboard/HideKeyboard';
+import { Icon } from '@components/atoms/Icon';
+import Spacer from '@components/atoms/Spacer/Spacer';
+
+import * as Styled from './auth.styled';
 
 const Auth: React.FC = () => {
-  const style = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 20,
-      backgroundColor: '#fff',
-    },
-  });
-
   const [text, setText] = useState<string>('');
 
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+  const onSubmit = () => {
+    console.log('submit');
+  };
+
   return (
-    <SafeAreaView style={style.container}>
-      <CustomText fontSize={20}>123</CustomText>
-      <CustomButton type={'default'} onPress={() => console.log('123')}>
-        SUBMIT
-      </CustomButton>
-      <CustomInput
-        value={text}
-        onChangeText={setText}
-        placeholder="Email"
-        type="text"
-        isAnimated={true}
-        icon={ICON_MAP.hide}
-      />
-    </SafeAreaView>
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+      {({ handleChange, handleBlur, handleSubmit, values }) => (
+        <HideKeyboard>
+          <Styled.Container>
+            <Icon type="logo" />
+            <Spacer size={50} />
+            <CustomInput
+              value={values.email}
+              onChangeText={handleChange}
+              placeholder="Email"
+              type="email"
+              isAnimated={true}
+            />
+            <Spacer size={20} />
+            <CustomInput
+              value={values.password}
+              onChangeText={handleChange}
+              placeholder="Password"
+              type="password"
+              isAnimated={true}
+            />
+            <Spacer size={20} />
+            <CustomButton type={'default'} onPress={handleSubmit}>
+              SUBMIT
+            </CustomButton>
+            <CustomButton type={'cancel'} onPress={() => console.log('123')}>
+              SKIP
+            </CustomButton>
+          </Styled.Container>
+        </HideKeyboard>
+      )}
+    </Formik>
   );
 };
 

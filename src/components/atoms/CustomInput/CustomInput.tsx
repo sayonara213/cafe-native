@@ -1,7 +1,7 @@
-import React from 'react';
-import { ImageSourcePropType } from 'react-native';
+import React, { useState } from 'react';
+
 import * as Styled from './CustomInput.styled';
-import { ICON_MAP } from '@assets/icons';
+import { Icon, TIconNames } from '@components/atoms/Icon';
 
 interface CustomInputProps {
   value: string;
@@ -9,7 +9,7 @@ interface CustomInputProps {
   placeholder: string;
   isAnimated?: boolean;
   type?: 'text' | 'password' | 'email' | 'number';
-  icon?: ImageSourcePropType;
+  icon?: TIconNames;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -20,7 +20,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   type = 'text',
   icon,
 }) => {
-  const [isFocused, setIsFocused] = React.useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [hide, setHide] = useState<boolean>(true);
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -30,10 +31,15 @@ const CustomInput: React.FC<CustomInputProps> = ({
     setIsFocused(false);
   };
 
+  const toggleHide = () => {
+    setHide(!hide);
+    console.log(value);
+  };
+
   return (
     <Styled.CustomInputContainer>
       {isAnimated && (
-        <Styled.CustomInputPlaceholder isFocused={isFocused}>
+        <Styled.CustomInputPlaceholder isFocused={isFocused || value !== ''}>
           {placeholder}
         </Styled.CustomInputPlaceholder>
       )}
@@ -44,8 +50,19 @@ const CustomInput: React.FC<CustomInputProps> = ({
         placeholderTextColor="#000"
         onFocus={handleFocus}
         onBlur={handleBlur}
+        secureTextEntry={hide}
       />
-      {icon && <Styled.Image source={ICON_MAP.hide} />}
+      {type === 'password' ? (
+        <Icon
+          type={hide ? 'hide' : 'show'}
+          width={20}
+          height={20}
+          color="#fff"
+          onPress={toggleHide}
+        />
+      ) : (
+        icon && <Icon type={icon} width={20} height={20} color="#fff" onPress={toggleHide} />
+      )}
     </Styled.CustomInputContainer>
   );
 };

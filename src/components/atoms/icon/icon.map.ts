@@ -1,4 +1,4 @@
-import logo from '@assets/icons/codempire-logo.svg';
+import logo from '@assets/icons/logo.svg';
 import hide from '@assets/icons/hide.svg';
 import show from '@assets/icons/show.svg';
 import cart from '@assets/icons/cart.svg';

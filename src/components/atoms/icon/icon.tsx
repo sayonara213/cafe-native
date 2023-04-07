@@ -36,7 +36,6 @@ export const Icon: FC<IIconProps> = (props) => {
     <Styled.Press
       onPress={onPress}
       onLongPress={onLongPress}
-      hitSlop={1}
       activeOpacity={activeOpacity}
       style={wrapperStyle}
       disabled={disabled}>

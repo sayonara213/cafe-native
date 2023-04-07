@@ -6,12 +6,14 @@ interface CustomTextProps {
   fontSize?: number;
   color?: string;
   children: ReactNode | undefined;
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 const CustomText: React.FC<CustomTextProps> = ({
   fontFamily = 'Roboto-Regular',
   fontSize = 16,
   color = '#000',
+  textAlign = 'center',
   children,
 }) => {
   const styles = StyleSheet.create({
@@ -19,6 +21,7 @@ const CustomText: React.FC<CustomTextProps> = ({
       fontFamily: fontFamily,
       fontSize: fontSize,
       color: color,
+      textAlign: textAlign,
     },
   });
 
