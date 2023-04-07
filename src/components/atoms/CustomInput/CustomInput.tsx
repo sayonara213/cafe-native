@@ -50,7 +50,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         placeholderTextColor="#000"
         onFocus={handleFocus}
         onBlur={handleBlur}
-        secureTextEntry={hide}
+        secureTextEntry={type === 'password' ? hide : false}
       />
       {type === 'password' ? (
         <Icon
