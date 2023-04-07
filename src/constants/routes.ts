@@ -1,5 +1,6 @@
 export const APP_ROUTES = {
   main: {
-    auth: 'auth',
+    login: 'log in',
+    register: 'register',
   },
 };
