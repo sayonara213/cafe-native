@@ -8,8 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootNavigator } from '@navigation/root.navigator';
 import { store } from '@services/store';
 import { ThemeProvider } from 'styled-components/native';
-import { theme } from './../../theme/theme';
-
+import { theme } from '@theme/theme';
 export const Main = () => {
   const persistor = persistStore(store);
 
