@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import * as Styled from './CustomInput.styled';
 import { Icon, TIconNames } from '@components/atoms/Icon';
 
+export type TInput = 'email' | 'password' | 'number' | 'text';
 interface CustomInputProps {
   value: string;
   onChangeText: (value: string) => void;
   placeholder: string;
   isAnimated?: boolean;
-  type?: 'text' | 'password' | 'email' | 'number';
+  type?: TInput;
   icon?: TIconNames;
 }
 
@@ -33,7 +34,6 @@ const CustomInput: React.FC<CustomInputProps> = ({
 
   const toggleHide = () => {
     setHide(!hide);
-    console.log(value);
   };
 
   return (
