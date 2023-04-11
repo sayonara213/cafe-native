@@ -4,3 +4,10 @@ export interface ILoginValues {
 
   [key: string]: string;
 }
+
+export interface IAdditionalValues {
+  username: string;
+  phone: string;
+
+  [key: string]: string;
+}

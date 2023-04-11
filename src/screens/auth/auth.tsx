@@ -13,7 +13,7 @@ import { ILoginValues } from './auth.types';
 import CustomText from '@components/atoms/CustomText/CustomText';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { APP_ROUTES } from '@constants/routes';
-import { validationSchema } from './validation/validation';
+import { authValidationSchema } from './validation/validation';
 import { postRequest } from '@services/api.service';
 import { useAppDispatch } from '@services/hooks/redux.hook';
 import { setUser } from '@services/store/user';
@@ -51,6 +51,7 @@ const Auth: React.FC = () => {
       route?.params?.isLogin ? API_ROUTES.auth.login : API_ROUTES.auth.register,
     );
     dispatch(setUser(user));
+    !route?.params?.isLogin && navigate(APP_ROUTES.main.authAdditional as never);
   };
 
   const handleSwitchAuth = () => {
@@ -62,7 +63,7 @@ const Auth: React.FC = () => {
   return (
     <Formik
       initialValues={authInitialValues}
-      validationSchema={validationSchema}
+      validationSchema={authValidationSchema}
       onSubmit={onSubmit}
       validateOnBlur>
       {({ handleChange, handleSubmit, handleBlur, values, errors, touched }) => (

@@ -25,7 +25,12 @@ const phone = Yup.string()
   .required("Enter user's phone")
   .matches(REGEXPS.phone, 'Please enter valid phone');
 
-export const validationSchema = Yup.object().shape({
+export const authValidationSchema = Yup.object().shape({
   email: email,
   password: password,
+});
+
+export const additionalValidationSchema = Yup.object().shape({
+  username: username,
+  phone: phone,
 });
