@@ -3,13 +3,16 @@ import React, { useState } from 'react';
 import * as Styled from './CustomInput.styled';
 import { Icon, TIconNames } from '@components/atoms/Icon';
 
+export type TInput = 'email' | 'password' | 'number' | 'text';
 interface CustomInputProps {
   value: string;
   onChangeText: (value: string) => void;
+  onBlur?: (e: any) => void;
   placeholder: string;
   isAnimated?: boolean;
-  type?: 'text' | 'password' | 'email' | 'number';
+  type?: TInput;
   icon?: TIconNames;
+  isError?: boolean;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -19,6 +22,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   isAnimated = false,
   type = 'text',
   icon,
+  isError = false,
+  onBlur,
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [hide, setHide] = useState<boolean>(true);
@@ -27,17 +32,16 @@ const CustomInput: React.FC<CustomInputProps> = ({
     setIsFocused(true);
   };
 
-  const handleBlur = () => {
+  const handleEndFocus = () => {
     setIsFocused(false);
   };
 
   const toggleHide = () => {
     setHide(!hide);
-    console.log(value);
   };
 
   return (
-    <Styled.CustomInputContainer>
+    <Styled.CustomInputContainer isError={isError}>
       {isAnimated && (
         <Styled.CustomInputPlaceholder isFocused={isFocused || value !== ''}>
           {placeholder}
@@ -49,7 +53,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
         placeholder={isAnimated ? '' : placeholder}
         placeholderTextColor="#000"
         onFocus={handleFocus}
-        onBlur={handleBlur}
+        onBlur={onBlur}
+        onEndEditing={handleEndFocus}
         secureTextEntry={type === 'password' ? hide : false}
       />
       {type === 'password' ? (

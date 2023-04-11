@@ -1,15 +1,19 @@
 import React from 'react';
+
+import { NavigationContainer } from '@react-navigation/native';
+
 import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components/native';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { RootNavigator } from '@navigation/root.navigator';
-import { store } from '@services/store';
-import { ThemeProvider } from 'styled-components/native';
+import { setupStore } from '@services/store';
 import { theme } from '@theme/theme';
-export const Main = () => {
+
+export const App = () => {
+  const store = setupStore();
   const persistor = persistStore(store);
 
   return (

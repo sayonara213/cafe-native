@@ -6,6 +6,10 @@ interface CustomInputProps extends TextInputProps {
   isFocused: boolean;
 }
 
+interface CustomInputContainerProps {
+  isError: boolean;
+}
+
 const PLACEHOLDER = () => ({
   default: css`
     left: 14px;
@@ -19,13 +23,14 @@ const PLACEHOLDER = () => ({
   `,
 });
 
-export const CustomInputContainer = styled.View`
+export const CustomInputContainer = styled.View<CustomInputContainerProps>`
   width: 100%;
   height: 48px;
 
   border-radius: 4px;
   border-width: 1px;
-  border-color: ${({ theme }) => theme.colors.borderNotActive};
+  border-color: ${({ theme, isError }) =>
+    isError ? theme.colors.red : theme.colors.borderNotActive};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

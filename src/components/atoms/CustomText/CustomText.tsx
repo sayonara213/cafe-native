@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface CustomTextProps {
   fontFamily?: string;
@@ -7,6 +7,7 @@ interface CustomTextProps {
   color?: string;
   children: ReactNode | undefined;
   textAlign?: 'center' | 'left' | 'right';
+  onPress?: () => void;
 }
 
 const CustomText: React.FC<CustomTextProps> = ({
@@ -15,6 +16,7 @@ const CustomText: React.FC<CustomTextProps> = ({
   color = '#000',
   textAlign = 'center',
   children,
+  onPress,
 }) => {
   const styles = StyleSheet.create({
     customText: {
@@ -24,6 +26,14 @@ const CustomText: React.FC<CustomTextProps> = ({
       textAlign: textAlign,
     },
   });
+
+  if (onPress) {
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <Text style={styles.customText}>{children}</Text>
+      </TouchableOpacity>
+    );
+  }
 
   return <Text style={styles.customText}>{children}</Text>;
 };
