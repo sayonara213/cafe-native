@@ -5,8 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Auth from '@screens/auth/auth';
 import Header from '@components/organisms/Header/header';
 import { useAppSelector } from '@services/hooks/redux.hook';
-import Main from '@screens/main/Main';
 import AuthAdditional from '@screens/authAdditional/authAdditional';
+import { HomeStack } from './molecules/home-stack';
 
 const RootStack = createStackNavigator();
 
@@ -20,8 +20,12 @@ export const RootNavigator = () => {
           screenOptions={{
             header: (props) => <Header isAuth={false} headerProps={props} />,
           }}>
-          <RootStack.Screen name={APP_ROUTES.main.main} component={Main} />
-          <RootStack.Screen name={APP_ROUTES.main.authAdditional} component={AuthAdditional} />
+          <RootStack.Screen
+            name={APP_ROUTES.main.main}
+            component={HomeStack}
+            options={{ gestureEnabled: false }}
+          />
+          <RootStack.Screen name={APP_ROUTES.auth.authAdditional} component={AuthAdditional} />
         </RootStack.Group>
       ) : (
         <RootStack.Group
@@ -29,12 +33,12 @@ export const RootNavigator = () => {
             header: (props) => <Header isAuth={true} headerProps={props} />,
           }}>
           <RootStack.Screen
-            name={APP_ROUTES.main.login}
+            name={APP_ROUTES.auth.login}
             component={Auth}
             initialParams={{ isLogin: true }}
           />
           <RootStack.Screen
-            name={APP_ROUTES.main.register}
+            name={APP_ROUTES.auth.register}
             component={Auth}
             initialParams={{ isLogin: false }}
           />

@@ -9,6 +9,12 @@ import search from '@assets/icons/search.svg';
 import settings from '@assets/icons/settings.svg';
 import params from '@assets/icons/params.svg';
 import reload from '@assets/icons/reload.svg';
+import mainActive from '@assets/icons/mainActive.svg';
+import main from '@assets/icons/main.svg';
+import profileActive from '@assets/icons/profileActive.svg';
+import profile from '@assets/icons/profile.svg';
+import ordersActive from '@assets/icons/ordersActive.svg';
+import orders from '@assets/icons/orders.svg';
 
 export const ICON_MAP = {
   logo,
@@ -22,4 +28,10 @@ export const ICON_MAP = {
   settings,
   params,
   reload,
+  mainActive,
+  main,
+  profileActive,
+  profile,
+  ordersActive,
+  orders,
 };

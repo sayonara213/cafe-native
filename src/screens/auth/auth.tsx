@@ -51,13 +51,13 @@ const Auth: React.FC = () => {
       route?.params?.isLogin ? API_ROUTES.auth.login : API_ROUTES.auth.register,
     );
     dispatch(setUser(user));
-    !route?.params?.isLogin && navigate(APP_ROUTES.main.authAdditional as never);
+    !route?.params?.isLogin && navigate(APP_ROUTES.auth.authAdditional as never);
   };
 
   const handleSwitchAuth = () => {
     route?.params?.isLogin
-      ? navigate(APP_ROUTES.main.register as never, { isLogin: false } as never)
-      : navigate(APP_ROUTES.main.login as never, { isLogin: true } as never);
+      ? navigate(APP_ROUTES.auth.register as never, { isLogin: false } as never)
+      : navigate(APP_ROUTES.auth.login as never, { isLogin: true } as never);
   };
 
   return (
