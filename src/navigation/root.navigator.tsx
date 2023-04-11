@@ -6,6 +6,7 @@ import Auth from '@screens/auth/auth';
 import Header from '@components/organisms/Header/header';
 import { useAppSelector } from '@services/hooks/redux.hook';
 import Main from '@screens/main/Main';
+import AuthAdditional from '@screens/authAdditional/authAdditional';
 
 const RootStack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export const RootNavigator = () => {
             header: (props) => <Header isAuth={false} headerProps={props} />,
           }}>
           <RootStack.Screen name={APP_ROUTES.main.main} component={Main} />
+          <RootStack.Screen name={APP_ROUTES.main.authAdditional} component={AuthAdditional} />
         </RootStack.Group>
       ) : (
         <RootStack.Group

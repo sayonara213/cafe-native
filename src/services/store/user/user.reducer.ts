@@ -6,6 +6,11 @@ interface IUserState {
   access_token: string;
 }
 
+interface IAddInfo {
+  name: string;
+  phone: string;
+}
+
 export const initialUser: IUserState = {
   user: {
     id: '',
@@ -28,6 +33,12 @@ const userSlice = createSlice({
       state.user = user;
       state.access_token = access_token;
     },
+    addInfo: (state: IUserState, { payload }: PayloadAction<IAddInfo>) => {
+      const { name, phone } = payload;
+
+      state.user.name = name;
+      state.user.phone = phone;
+    },
     logOut: (state: IUserState) => {
       state.user = initialUser.user;
       state.access_token = initialUser.access_token;
@@ -35,6 +46,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, logOut } = userSlice.actions;
+export const { setUser, logOut, addInfo } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
