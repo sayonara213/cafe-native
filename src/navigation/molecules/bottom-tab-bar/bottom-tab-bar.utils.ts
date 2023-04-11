@@ -10,9 +10,9 @@ const getCurrentIcon = (type: string, isFocused: boolean) =>
 const getIconsHashMap = (getter: TIconGetter, isFocused: boolean) => {
   const { profile, main, orders } = APP_ROUTES.main;
   return {
-    [main]: getter('main', isFocused),
-    [profile]: getter('profile', isFocused),
-    [orders]: getter('orders', isFocused),
+    [main.toLowerCase()]: getter('main', isFocused),
+    [profile.toLowerCase()]: getter('profile', isFocused),
+    [orders.toLowerCase()]: getter('orders', isFocused),
   };
 };
 

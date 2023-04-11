@@ -5,6 +5,7 @@ import CustomText from '@components/atoms/CustomText/CustomText';
 import { theme } from '@theme/theme';
 import { useTabBarState } from './bottom-tab-bar.state';
 import { getIcon } from './bottom-tab-bar.utils';
+import { Icon } from '@components/atoms/Icon';
 
 export const CustomBottomTabBar: React.FC<BottomTabBarProps> = (props) => {
   const { state, descriptors } = props;
@@ -17,7 +18,6 @@ export const CustomBottomTabBar: React.FC<BottomTabBarProps> = (props) => {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;
         const routeName = route.name;
-
         return (
           <Styled.Tab
             key={index}
@@ -26,10 +26,11 @@ export const CustomBottomTabBar: React.FC<BottomTabBarProps> = (props) => {
             onPress={onTabPress(index, route, isFocused)}
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}>
-            <Styled.TabIcon
-              size={24}
+            <Icon
               type={getIcon(isFocused)[route.name.toLowerCase()]}
+              size={20}
               onPress={onTabPress(index, route, isFocused)}
+              style={{ marginBottom: 4 }}
             />
             <CustomText color={isFocused ? theme.colors.primary : theme.colors.notActive}>
               {routeName}
