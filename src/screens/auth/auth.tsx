@@ -25,16 +25,17 @@ interface IAuthProps {
 
 type TAuthProps = RouteProp<Record<string, IAuthProps>, string>;
 
+const inputs: TInput[] = ['email', 'password'];
+
+const authInitialValues: ILoginValues = {
+  email: '',
+  password: '',
+};
+
 const Auth: React.FC = () => {
   const route = useRoute<TAuthProps>();
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   const dispatch = useAppDispatch();
-
-  const inputs: TInput[] = ['email', 'password'];
-  const initialValues: ILoginValues = {
-    email: '',
-    password: '',
-  };
 
   const authUser = async (values: ILoginValues, apiRoute: string) => {
     try {
@@ -54,13 +55,17 @@ const Auth: React.FC = () => {
 
   const handleSwitchAuth = () => {
     route?.params?.isLogin
-      ? navigation.navigate(APP_ROUTES.main.register as never, { isLogin: false } as never)
-      : navigation.navigate(APP_ROUTES.main.login as never, { isLogin: true } as never);
+      ? navigate(APP_ROUTES.main.register as never, { isLogin: false } as never)
+      : navigate(APP_ROUTES.main.login as never, { isLogin: true } as never);
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-      {({ handleChange, handleSubmit, values }) => (
+    <Formik
+      initialValues={authInitialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+      validateOnBlur>
+      {({ handleChange, handleSubmit, handleBlur, values, errors, touched }) => (
         <HideKeyboard>
           <Styled.Container>
             <Icon type="logo" />
@@ -73,6 +78,8 @@ const Auth: React.FC = () => {
                   placeholder={input}
                   type={input}
                   isAnimated={true}
+                  isError={touched[input] && !!errors[input]}
+                  onBlur={handleBlur(input)}
                 />
                 <Spacer size={20} />
               </Styled.InputContainer>
