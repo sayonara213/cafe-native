@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const HeaderContainer = styled.View`
-  padding: 0 20px;
+  padding: 0 16px;
 
   flex-direction: row;
   justify-content: space-between;
@@ -11,11 +11,14 @@ export const HeaderContainer = styled.View`
   height: 60px;
 `;
 
-export const HeaderText = styled.Text`
-  font-size: ${({ theme }) => theme.fontSize.medium};
-  font-family: ${({ theme }) => theme.fontFamily.medium};
-  color: ${({ theme }) => theme.colors.primary};
+export const HeaderButtonContainer = styled.View`
+  width: 120px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
 
-  width: 100%;
-  text-align: center;
+export const TitleContainer = styled.View`
+  flex: 1;
+  align-items: center;
 `;

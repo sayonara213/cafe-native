@@ -1,4 +1,4 @@
-import { GestureResponderEvent, StyleProp, ViewStyle } from 'react-native';
+import { StyleProp, ViewStyle } from 'react-native';
 
 import { TIconNames } from './icon';
 
@@ -11,6 +11,6 @@ export interface IIconProps {
   activeOpacity?: number;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
-  onPress?: (event: GestureResponderEvent) => void;
-  onLongPress?: (event: GestureResponderEvent) => void;
+  onPress?: () => void;
+  onLongPress?: () => void;
 }
