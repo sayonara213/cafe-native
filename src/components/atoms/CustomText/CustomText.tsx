@@ -5,6 +5,7 @@ interface CustomTextProps {
   fontFamily?: string;
   fontSize?: number;
   color?: string;
+  width?: number | string;
   children: ReactNode | undefined;
   textAlign?: 'center' | 'left' | 'right';
   onPress?: () => void;
@@ -17,6 +18,7 @@ const CustomText: React.FC<CustomTextProps> = ({
   textAlign = 'center',
   children,
   onPress,
+  width,
 }) => {
   const styles = StyleSheet.create({
     customText: {
@@ -24,6 +26,7 @@ const CustomText: React.FC<CustomTextProps> = ({
       fontSize: fontSize,
       color: color,
       textAlign: textAlign,
+      width: width,
     },
   });
 

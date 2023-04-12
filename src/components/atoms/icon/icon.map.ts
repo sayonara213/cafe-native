@@ -15,6 +15,8 @@ import profileActive from '@assets/icons/profileActive.svg';
 import profile from '@assets/icons/profile.svg';
 import ordersActive from '@assets/icons/ordersActive.svg';
 import orders from '@assets/icons/orders.svg';
+import notification from '@assets/icons/notification.svg';
+import backArrow from '@assets/icons/back-arrow.svg';
 
 export const ICON_MAP = {
   logo,
@@ -34,4 +36,6 @@ export const ICON_MAP = {
   profile,
   ordersActive,
   orders,
+  notification,
+  backArrow,
 };
