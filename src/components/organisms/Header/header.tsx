@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
       {!isAuth && (
         <Styled.HeaderButtonContainer>
           {headerButtons.map((headerButton) => (
-            <Icon type={headerButton} size={20} />
+            <Icon type={headerButton} size={20} key={headerButton} />
           ))}
         </Styled.HeaderButtonContainer>
       )}

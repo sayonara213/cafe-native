@@ -21,7 +21,7 @@ export const RootNavigator = () => {
             header: (props) => <Header isAuth={false} headerProps={props} />,
           }}>
           <RootStack.Screen
-            name={APP_ROUTES.main.main}
+            name={APP_ROUTES.main.home}
             component={HomeStack}
             options={{ gestureEnabled: false }}
           />
