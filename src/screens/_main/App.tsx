@@ -11,6 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootNavigator } from '@navigation/root.navigator';
 import { setupStore } from '@services/store';
 import { theme } from '@theme/theme';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 export const App = () => {
   const store = setupStore();
@@ -19,13 +20,15 @@ export const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <NavigationContainer>
-          <ThemeProvider theme={theme}>
-            <SafeAreaProvider>
-              <RootNavigator />
-            </SafeAreaProvider>
-          </ThemeProvider>
-        </NavigationContainer>
+        <BottomSheetModalProvider>
+          <NavigationContainer>
+            <ThemeProvider theme={theme}>
+              <SafeAreaProvider>
+                <RootNavigator />
+              </SafeAreaProvider>
+            </ThemeProvider>
+          </NavigationContainer>
+        </BottomSheetModalProvider>
       </PersistGate>
     </Provider>
   );
