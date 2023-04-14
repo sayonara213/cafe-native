@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 export const StyledTabsView = {
+  TabContainer: styled.View``,
   TabsView: styled.View`
     background-color: ${({ theme }) => theme.colors.secondary};
   `,

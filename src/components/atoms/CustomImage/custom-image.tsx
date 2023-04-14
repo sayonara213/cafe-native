@@ -5,26 +5,26 @@ import { ICustomImageProps } from './custom-image.typings';
 
 import { StyledCustomImage as Styled } from './custom-image.styles';
 
-export const CustomImage: React.FC<ICustomImageProps> = (props) => {
-  const {
-    width,
-    height,
-    styles,
-    source,
-    resizeMode = 'contain',
-    priority = 'normal',
-    cache = 'immutable',
-    borderRadius = 0,
-    children = null,
-  } = props;
+const { priority: fastImagePriority, cacheControl } = FastImage;
 
+export const CustomImage: React.FC<ICustomImageProps> = ({
+  width,
+  height,
+  styles,
+  source,
+  resizeMode = 'contain',
+  priority = 'normal',
+  cache = 'immutable',
+  borderRadius = 0,
+  children = null,
+}) => {
   return (
     <Styled.Image
       borderRadius={borderRadius}
       source={{
         ...source,
-        priority: FastImage.priority[priority],
-        cache: FastImage.cacheControl[cache],
+        priority: fastImagePriority[priority],
+        cache: cacheControl[cache],
       }}
       height={height}
       width={width}

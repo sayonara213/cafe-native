@@ -3,15 +3,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistCombineReducers } from 'redux-persist';
 
 import { userReducer } from './user/user.reducer';
+import goodsReducer from './goods/goods.reducer';
 
 const config = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: [],
+  blacklist: ['goods'],
 };
 
 const reducer = persistCombineReducers(config, {
   user: userReducer,
+  goods: goodsReducer,
 });
 
 export const setupStore = () => {

@@ -17,6 +17,7 @@ import ordersActive from '@assets/icons/ordersActive.svg';
 import orders from '@assets/icons/orders.svg';
 import notification from '@assets/icons/notification.svg';
 import backArrow from '@assets/icons/back-arrow.svg';
+import filter from '@assets/icons/filter.svg';
 
 export const ICON_MAP = {
   logo,
@@ -38,4 +39,5 @@ export const ICON_MAP = {
   orders,
   notification,
   backArrow,
+  filter,
 };

@@ -45,7 +45,11 @@ const CustomText: React.FC<CustomTextProps> = ({
     );
   }
 
-  return <Text style={styles.customText}>{children}</Text>;
+  return (
+    <Text style={styles.customText} numberOfLines={numberOfLines}>
+      {children}
+    </Text>
+  );
 };
 
 export default CustomText;

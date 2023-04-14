@@ -1,22 +1,26 @@
-import React from 'react';
-import CustomButton from '@components/atoms/CustomButton/CustomButton';
-import CustomText from '@components/atoms/CustomText/CustomText';
-import { useAppDispatch } from '@services/hooks/redux.hook';
-import { logOut } from '@services/store/user';
-import * as Styled from './Main.styled';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@services/hooks/redux.hook';
+
 import MainList from './molecules/main-list/main-list';
 import { TabsView } from './organisms/tabs-view';
 
+import * as Styled from './Main.styled';
+import { fetchProductList, fetchMenuList } from '@services/store/goods/goods.reducer';
+
 const Main: React.FC = () => {
+  const { menuList, productList, orderBy } = useAppSelector((store) => store.goods);
   const dispatch = useAppDispatch();
 
-  const logout = () => {
-    dispatch(logOut());
-  };
+  const types: string[] = [];
+
+  useEffect(() => {
+    dispatch(fetchProductList({ orderBy, types }));
+    dispatch(fetchMenuList({ orderBy, types }));
+  }, [orderBy]);
 
   const screens = {
-    menuList: () => <MainList isProduct={false} />,
-    productList: () => <MainList isProduct />,
+    menuList: () => <MainList items={menuList} />,
+    productList: () => <MainList items={productList} />,
   };
 
   const routes = [
@@ -27,8 +31,6 @@ const Main: React.FC = () => {
   return (
     <Styled.MainContainer>
       <TabsView screens={screens} routes={routes} />
-      {/* <CustomText>Test</CustomText>
-      <CustomButton onPress={logout}>Log Out</CustomButton> */}
     </Styled.MainContainer>
   );
 };

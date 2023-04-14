@@ -6,6 +6,7 @@ import { TabButton } from './tab-button';
 import { ITabsViewProps, TabRoute } from './tabs-view.types';
 
 import { StyledTabsView as Styled } from './tabs-view.styles';
+import ListOptions from '@screens/main/molecules/list-options/list-options';
 
 export const TabsView: React.FC<ITabsViewProps> = (props) => {
   const { routes, screens, children = true } = props;
@@ -18,22 +19,25 @@ export const TabsView: React.FC<ITabsViewProps> = (props) => {
 
   const renderTabBar = (properties: any) => {
     return (
-      <Styled.TabsView>
-        {children}
-        <Styled.TabBar>
-          {properties.navigationState.routes.map((route: TabRoute, number: number) => {
-            return (
-              <TabButton
-                key={route.title}
-                route={route}
-                onPress={setIndex}
-                isActive={number === index}
-                index={number}
-              />
-            );
-          })}
-        </Styled.TabBar>
-      </Styled.TabsView>
+      <Styled.TabContainer>
+        <Styled.TabsView>
+          {children}
+          <Styled.TabBar>
+            {properties.navigationState.routes.map((route: TabRoute, number: number) => {
+              return (
+                <TabButton
+                  key={route.title}
+                  route={route}
+                  onPress={setIndex}
+                  isActive={number === index}
+                  index={number}
+                />
+              );
+            })}
+          </Styled.TabBar>
+        </Styled.TabsView>
+        <ListOptions />
+      </Styled.TabContainer>
     );
   };
 
