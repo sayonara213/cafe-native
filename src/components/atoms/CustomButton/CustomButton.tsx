@@ -1,34 +1,31 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
+
+import { Icon } from '@components/atoms/Icon';
+
+import { CustomButtonProps } from './CustomButton.types';
 
 import * as Styled from './CustomButton.styled';
 
-interface CustomButtonProps {
-  type?: 'default' | 'cancel' | 'notActive';
-  isActive?: boolean;
-  children: ReactNode | undefined;
-  onPress?: () => void;
-  onLongPress?: () => void;
-}
+const CustomButton: React.FC<CustomButtonProps> = ({
+  type,
+  children,
+  onPress,
+  onLongPress,
+  icon,
+  contentSide = 'center',
+}) => {
+  const handlePress = () => onPress?.();
 
-const CustomButton: React.FC<CustomButtonProps> = ({ type, children, onPress, onLongPress }) => {
-  const handlePress = () => {
-    if (onPress) {
-      onPress();
-    }
-  };
-
-  const handleLongPress = () => {
-    if (onLongPress) {
-      onLongPress();
-    }
-  };
+  const handleLongPress = () => onLongPress?.();
 
   return (
     <Styled.CustomButtonContainer
       onPress={handlePress}
       onLongPress={handleLongPress}
       activeOpacity={0.8}
-      type={type}>
+      type={type}
+      style={{ justifyContent: contentSide }}>
+      {icon && <Icon type={icon} style={{ marginHorizontal: 5 }} />}
       <Styled.CustomButtonText type={type}>{children}</Styled.CustomButtonText>
     </Styled.CustomButtonContainer>
   );

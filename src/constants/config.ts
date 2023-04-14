@@ -8,4 +8,8 @@ export const API_ROUTES = {
     register: '/auth/register',
     additional: '/auth/additional',
   },
+  goods: {
+    menuList: '/menu/list',
+    productList: '/product/list',
+  },
 };

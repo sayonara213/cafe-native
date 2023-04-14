@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Priority, ResizeMode, Source } from 'react-native-fast-image';
 
 import { TStyles } from '@typings/styles';

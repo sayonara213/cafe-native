@@ -4,7 +4,7 @@ import { css } from 'styled-components/native';
 
 interface CustomButtonProps extends TouchableOpacityProps {
   isActive?: boolean;
-  type?: 'default' | 'cancel' | 'notActive';
+  type?: 'default' | 'cancel' | 'notActive' | 'purple';
 }
 
 const BUTTONS = () => ({
@@ -16,6 +16,9 @@ const BUTTONS = () => ({
   `,
   notActive: css`
     background-color: ${({ theme }) => theme.colors.notActive};
+  `,
+  purple: css`
+    background-color: ${({ theme }) => theme.colors.primary};
   `,
 });
 
@@ -29,6 +32,9 @@ const TEXTS = () => ({
   notActive: css`
     color: ${({ theme }) => theme.colors.primary};
   `,
+  purple: css`
+    color: ${({ theme }) => theme.colors.purple};
+  `,
 });
 
 export const CustomButtonContainer = styled.TouchableOpacity<CustomButtonProps>`
@@ -38,11 +44,14 @@ export const CustomButtonContainer = styled.TouchableOpacity<CustomButtonProps>`
   height: 48px;
   border-radius: 4px;
 
-  justify-content: center;
+  flex-direction: row;
+
   align-items: center;
 `;
 
-export const CustomButtonText = styled.Text<{ type?: 'default' | 'cancel' | 'notActive' }>`
+export const CustomButtonText = styled.Text<{
+  type?: 'default' | 'cancel' | 'notActive' | 'purple';
+}>`
   font-size: ${({ theme }) => theme.fontSize.medium};
   font-family: ${({ theme }) => theme.fontFamily.medium};
   ${({ type }) => (!type ? TEXTS().default : TEXTS()[type])}

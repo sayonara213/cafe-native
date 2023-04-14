@@ -5,6 +5,7 @@ export const APP_ROUTES = {
     authAdditional: 'Register Additional',
   },
   main: {
+    home: 'Home',
     main: 'Main',
     profile: 'Profile',
     orders: 'Orders',
