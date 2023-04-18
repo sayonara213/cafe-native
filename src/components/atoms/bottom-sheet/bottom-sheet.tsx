@@ -49,7 +49,7 @@ export const BottomSheet: React.FC<IBottomSheetProps> = (props) => {
         {!isWithoutHeader && (
           <Styled.Header headerPosition={headerPosition}>
             <View>{renderHeader}</View>
-            <Styled.CustomIcon type={'settings'} onPress={close} />
+            <Styled.CustomIcon type={'close'} onPress={close} />
           </Styled.Header>
         )}
         {children}

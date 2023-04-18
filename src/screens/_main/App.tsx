@@ -12,6 +12,7 @@ import { RootNavigator } from '@navigation/root.navigator';
 import { setupStore } from '@services/store';
 import { theme } from '@theme/theme';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export const App = () => {
   const store = setupStore();
@@ -20,15 +21,17 @@ export const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BottomSheetModalProvider>
-          <NavigationContainer>
-            <ThemeProvider theme={theme}>
-              <SafeAreaProvider>
-                <RootNavigator />
-              </SafeAreaProvider>
-            </ThemeProvider>
-          </NavigationContainer>
-        </BottomSheetModalProvider>
+        <NavigationContainer>
+          <ThemeProvider theme={theme}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <BottomSheetModalProvider>
+                <SafeAreaProvider>
+                  <RootNavigator />
+                </SafeAreaProvider>
+              </BottomSheetModalProvider>
+            </GestureHandlerRootView>
+          </ThemeProvider>
+        </NavigationContainer>
       </PersistGate>
     </Provider>
   );

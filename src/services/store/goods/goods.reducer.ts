@@ -30,8 +30,6 @@ export const fetchMenuList = createAsyncThunk(
       .toLowerCase();
     const getMenuApi = `${API_ROUTES.goods.menuList}?sortBy=${orderBy?.name}&order=${orderBy?.order}${typesString}`;
     const response = await getRequest(getMenuApi);
-    console.log(response);
-
     return [...response];
   },
 );
@@ -46,7 +44,6 @@ export const fetchProductList = createAsyncThunk(
       .toLowerCase();
     const getProductApi = `${API_ROUTES.goods.productList}/param?sortBy=${orderBy?.name}&order=${orderBy?.order}${typesString}`;
     const response = await getRequest(getProductApi);
-    console.log(response);
     return [...response];
   },
 );

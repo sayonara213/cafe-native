@@ -8,6 +8,7 @@ export const StyledBottomSheet = {
     background-color: ${({ theme }) => theme.colors.primary};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    padding-horizontal: 16px;
   `,
   HandleContainer: styled.View`
     background-color: ${({ theme }) => theme.colors.primary};
@@ -26,11 +27,14 @@ export const StyledBottomSheet = {
   Header: styled.View<{ headerPosition: 'center' | 'flex-start' | 'flex-end' }>`
     align-items: ${({ headerPosition }) => headerPosition};
     position: relative;
-    padding-horizontal: 16px;
+    padding-bottom: 16px;
+
+    border-bottom-width: 1px;
+    border-bottom-color: ${({ theme }) => theme.colors.borderNotActive};
   `,
   CustomIcon: styled(Icon)`
     position: absolute;
-    right: 15px;
-    top: 0;
+    right: 0;
+    top: 5px;
   `,
 };
