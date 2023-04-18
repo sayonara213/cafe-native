@@ -11,6 +11,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootNavigator } from '@navigation/root.navigator';
 import { setupStore } from '@services/store';
 import { theme } from '@theme/theme';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export const App = () => {
   const store = setupStore();
@@ -21,9 +23,13 @@ export const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
           <ThemeProvider theme={theme}>
-            <SafeAreaProvider>
-              <RootNavigator />
-            </SafeAreaProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <BottomSheetModalProvider>
+                <SafeAreaProvider>
+                  <RootNavigator />
+                </SafeAreaProvider>
+              </BottomSheetModalProvider>
+            </GestureHandlerRootView>
           </ThemeProvider>
         </NavigationContainer>
       </PersistGate>

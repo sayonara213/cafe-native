@@ -1,14 +1,19 @@
 import React from 'react';
 
+import { StyleSheet } from 'react-native';
+
 import RNPickerSelect from 'react-native-picker-select';
 
 import * as Styled from './list-options.styled';
 import CustomButton from '@components/atoms/CustomButton/CustomButton';
-import { StyleSheet } from 'react-native';
 import { theme } from '@theme/theme';
 import { useAppDispatch } from '@services/hooks/redux.hook';
 import { ISortValue } from './list-options.types';
 import { setOrderBy } from '@services/store/goods/goods.reducer';
+import { useBottomSheet } from '@services/hooks/bottom-tab.hook';
+import { BottomSheet } from '@components/atoms/bottom-sheet';
+import FilterList from '@screens/main/atoms/filter-list/filter-list';
+import BottomSheetHeader from '@screens/main/atoms/bottom-sheet-header/bottom-sheet-header';
 
 const sortList: ISortValue[] = [
   { value: { name: 'price', order: 'asc' }, label: 'Price Asc' },
@@ -28,10 +33,12 @@ const ListOptions: React.FC = () => {
     dispatch(setOrderBy(value));
   };
 
+  const { ref, open } = useBottomSheet();
+
   return (
     <Styled.ListOptionsContainer>
       <Styled.HalfWrap>
-        <CustomButton icon="filter" type="purple">
+        <CustomButton icon="filter" type="purple" onPress={open}>
           Filters
         </CustomButton>
       </Styled.HalfWrap>
@@ -43,6 +50,13 @@ const ListOptions: React.FC = () => {
           placeholder={{ label: 'Sort by', value: null }}
         />
       </Styled.HalfWrap>
+      <BottomSheet
+        sheetRef={ref}
+        snapPoints={['90%']}
+        headerPosition="flex-start"
+        renderHeader={<BottomSheetHeader text={'Filters'} icon={'filterBlack'} />}>
+        <FilterList />
+      </BottomSheet>
     </Styled.ListOptionsContainer>
   );
 };

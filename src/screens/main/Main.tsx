@@ -8,15 +8,13 @@ import * as Styled from './Main.styled';
 import { fetchProductList, fetchMenuList } from '@services/store/goods/goods.reducer';
 
 const Main: React.FC = () => {
-  const { menuList, productList, orderBy } = useAppSelector((store) => store.goods);
+  const { menuList, productList, orderBy, types } = useAppSelector((store) => store.goods);
   const dispatch = useAppDispatch();
-
-  const types: string[] = [];
 
   useEffect(() => {
     dispatch(fetchProductList({ orderBy, types }));
     dispatch(fetchMenuList({ orderBy, types }));
-  }, [orderBy]);
+  }, [orderBy, dispatch, types]);
 
   const screens = {
     menuList: () => <MainList items={menuList} />,

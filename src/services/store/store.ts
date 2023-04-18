@@ -10,7 +10,6 @@ const config = {
   storage: AsyncStorage,
   blacklist: ['goods'],
 };
-
 const reducer = persistCombineReducers(config, {
   user: userReducer,
   goods: goodsReducer,
