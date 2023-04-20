@@ -9,6 +9,8 @@ export interface IProduct {
   type: string;
   weight: number;
   ingredients: IIngredient[];
+
+  [key: string]: any;
 }
 
 export const productTypes = [
