@@ -9,6 +9,10 @@ import CustomText from '@components/atoms/CustomText/CustomText';
 import CustomButton from '@components/atoms/CustomButton/CustomButton';
 import Spacer from '@components/atoms/Spacer/Spacer';
 import { itemsShadow } from '@theme/shadows';
+import { BottomSheet } from '@components/atoms/bottom-sheet';
+import { useBottomSheet } from '@services/hooks/bottom-tab.hook';
+import BottomSheetHeader from '../bottom-sheet-header/bottom-sheet-header';
+import GoodsInfo from '@screens/main/molecules/goods-info/goods-info';
 
 interface MainListItemProps {
   item: IProduct | IMenu;
@@ -16,8 +20,18 @@ interface MainListItemProps {
 }
 
 const MainListItem: React.FC<MainListItemProps> = ({ item, index }) => {
+  const { ref, open } = useBottomSheet();
+
+  const checkIfProduct = (good: IProduct | IMenu): good is IProduct => {
+    return 'ingredients' in good;
+  };
+
   return (
-    <Styled.MainListItemContainer index={index} style={itemsShadow}>
+    <Styled.MainListItemContainer
+      index={index}
+      style={itemsShadow}
+      activeOpacity={0.95}
+      onPress={open}>
       <CustomImage
         source={{
           uri: item.image,
@@ -42,6 +56,14 @@ const MainListItem: React.FC<MainListItemProps> = ({ item, index }) => {
       </Styled.PriceWrap>
       <Spacer size={10} />
       <CustomButton>TO CART</CustomButton>
+
+      <BottomSheet
+        snapPoints={['90%']}
+        sheetRef={ref}
+        renderHeader={<BottomSheetHeader text={'Info'} icon={'search'} />}
+        headerPosition="flex-start">
+        <GoodsInfo goodId={item.id} isProduct={checkIfProduct(item)} />
+      </BottomSheet>
     </Styled.MainListItemContainer>
   );
 };

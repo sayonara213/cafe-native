@@ -11,5 +11,7 @@ export const API_ROUTES = {
   goods: {
     menuList: '/menu/list',
     productList: '/product/list',
+    getProduct: '/product/get',
+    getMenu: '/menu/get',
   },
 };

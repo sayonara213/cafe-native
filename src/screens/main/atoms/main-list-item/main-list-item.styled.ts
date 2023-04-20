@@ -4,7 +4,7 @@ interface IMainListItemContainerProps {
   index: number;
 }
 
-export const MainListItemContainer = styled.View<IMainListItemContainerProps>`
+export const MainListItemContainer = styled.TouchableOpacity<IMainListItemContainerProps>`
   flex: 0.5;
   height: 340px;
   padding: 16px;

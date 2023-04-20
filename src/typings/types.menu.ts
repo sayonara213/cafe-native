@@ -10,4 +10,6 @@ export interface IMenu {
   image: string;
   products: IProduct[];
   allergens: IAllergen[];
+
+  [key: string]: any;
 }
