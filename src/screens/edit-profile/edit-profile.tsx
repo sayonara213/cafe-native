@@ -9,58 +9,40 @@ import Spacer from '@components/atoms/Spacer/Spacer';
 import { CustomImage } from '@components/atoms/CustomImage';
 import { HideKeyboard } from '@components/atoms/CustomInput/HideKeyboard/HideKeyboard';
 
-import { putRequest } from '@services/api.service';
-import { useAppSelector } from '@services/hooks/redux.hook';
+import { useEditProfileState } from './edit-profile.state';
 
-import { IEditInitialValues } from './edit-profile.types';
-
-import { API_ROUTES } from '@constants/config';
 import { editProfileValidationSchema } from '@screens/auth/validation/validation';
 
 import * as Styled from './edit-profile.styled';
-
-const editProfileList = [
-  {
-    title: 'username',
-    value: 'John Doe',
-  },
-  {
-    title: 'email',
-    value: 'asdada@gmail.com',
-  },
-  {
-    title: 'phone',
-    value: '+380999999999',
-  },
-];
+import { theme } from '@theme/theme';
 
 const EditProfile: React.FC = () => {
-  const { user } = useAppSelector((state) => state.user);
-
-  const editInitialValues: IEditInitialValues = {
-    username: user.name,
-    email: user.email,
-    phone: user.phone,
-  };
-
-  const onSubmit = async (values: IEditInitialValues) => {
-    try {
-      await putRequest(`${API_ROUTES.user.updateUser}/${user.id}`, values);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const {
+    onSubmit,
+    onImageLibraryPress,
+    editInitialValues,
+    pickerResponse,
+    user,
+    editProfileList,
+  } = useEditProfileState();
 
   return (
     <Styled.EditProfileContainer>
       <Spacer size={16} />
       <CustomImage
-        source={{ uri: user.image }}
+        source={{
+          uri: pickerResponse?.assets !== undefined ? pickerResponse.assets[0].uri : user.image,
+        }}
         borderRadius={100}
         width={128}
         height={128}
-        resizeMode="cover"
-      />
+        resizeMode="cover">
+        <Styled.EditAvatar activeOpacity={0.8} onPress={onImageLibraryPress}>
+          <CustomText fontSize={12} color={theme.colors.primary}>
+            change
+          </CustomText>
+        </Styled.EditAvatar>
+      </CustomImage>
       <Spacer size={16} />
       <Formik
         initialValues={editInitialValues}

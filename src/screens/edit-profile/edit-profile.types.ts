@@ -5,3 +5,9 @@ export interface IEditInitialValues {
 
   [key: string]: string;
 }
+
+export interface IGalleryOptions {
+  mediaType: 'photo' | 'video';
+  selectionLimit: number;
+  includeBase64: boolean;
+}

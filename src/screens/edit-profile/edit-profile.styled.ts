@@ -20,3 +20,15 @@ export const EditProfileButtonWrapper = styled.View`
   flex: 1;
   justify-content: flex-end;
 `;
+
+export const EditAvatar = styled.TouchableOpacity`
+  position: absolute;
+  bottom: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 30px;
+  background-color: ${({ theme }) => theme.colors.secondary};
+`;

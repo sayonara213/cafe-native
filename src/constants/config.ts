@@ -18,5 +18,6 @@ export const API_ROUTES = {
   user: {
     getAddresses: '/address/user',
     updateUser: '/user',
+    updateAvatar: '/user/photo',
   },
 };
