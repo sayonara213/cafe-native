@@ -20,6 +20,7 @@ import backArrow from '@assets/icons/back-arrow.svg';
 import filter from '@assets/icons/filter.svg';
 import close from '@assets/icons/close.svg';
 import filterBlack from '@assets/icons/filter-black.svg';
+import forwardArrow from '@assets/icons/forward-arrow.svg';
 
 export const ICON_MAP = {
   logo,
@@ -44,4 +45,5 @@ export const ICON_MAP = {
   filter,
   close,
   filterBlack,
+  forwardArrow,
 };

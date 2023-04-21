@@ -7,11 +7,16 @@ export const API_ROUTES = {
     login: '/auth/login',
     register: '/auth/register',
     additional: '/auth/additional',
+    retrieve: '/auth/retrieve-user',
   },
   goods: {
     menuList: '/menu/list',
     productList: '/product/list',
     getProduct: '/product/get',
     getMenu: '/menu/get',
+  },
+  user: {
+    getAddresses: '/address/user',
+    updateUser: '/user',
   },
 };

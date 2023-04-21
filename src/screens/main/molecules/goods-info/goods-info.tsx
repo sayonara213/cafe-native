@@ -28,7 +28,7 @@ const GoodsInfo: React.FC<GoodsInfoProps> = ({ goodId, isProduct }) => {
 
   useEffect(() => {
     isProduct ? fetchProduct() : fetchMenu();
-  }, []);
+  }, [isProduct, fetchProduct, fetchMenu]);
 
   if (isLoading) {
     return (

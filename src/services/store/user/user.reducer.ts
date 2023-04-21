@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../user/user.types';
+import { IAddress } from '@typings/types.address';
 
 interface IUserState {
   user: IUser;
@@ -32,12 +33,21 @@ const userSlice = createSlice({
       const { user, access_token } = payload;
       state.user = user;
       state.access_token = access_token;
+      if (payload.user.name === '' || payload.user.name === null) {
+        state.user.name = `USER${payload.user.id.substring(0, 5)}`;
+      }
+    },
+    updateUser: (state: IUserState, { payload }: PayloadAction<IUser>) => {
+      state.user = payload;
     },
     addInfo: (state: IUserState, { payload }: PayloadAction<IAddInfo>) => {
       const { name, phone } = payload;
 
       state.user.name = name;
       state.user.phone = phone;
+    },
+    setAddresses: (state: IUserState, { payload }: PayloadAction<IAddress[]>) => {
+      state.user.addresses = payload;
     },
     logOut: (state: IUserState) => {
       state.user = initialUser.user;
@@ -46,6 +56,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, logOut, addInfo } = userSlice.actions;
+export const { setUser, logOut, addInfo, setAddresses, updateUser } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
