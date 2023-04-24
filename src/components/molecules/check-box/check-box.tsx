@@ -14,9 +14,9 @@ const checkBoxColors = {
   false: theme.colors.secondary,
 };
 
-const CustomCheckBox: React.FC<ICheckBoxProps> = ({ checked, onPress, label }) => {
+const CustomCheckBox: React.FC<ICheckBoxProps> = ({ checked, onPress, label, value }) => {
   const handlePress = () => {
-    onPress(label);
+    value ? onPress(value) : onPress(label);
   };
 
   return (

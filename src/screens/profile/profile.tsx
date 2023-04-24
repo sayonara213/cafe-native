@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { RefreshControl } from 'react-native-gesture-handler';
 
@@ -14,11 +14,7 @@ import { itemsShadow } from '@theme/shadows';
 import ProfileButton from './atoms/profile-button/profile-button';
 
 const Profile: React.FC = () => {
-  const { user, refreshing, onRefresh, fetchUser, signOut, editProfile } = useProfileState();
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const { user, refreshing, onRefresh, signOut, editProfile } = useProfileState();
 
   return (
     <Styled.ProfileContainer
