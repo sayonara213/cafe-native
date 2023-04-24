@@ -4,6 +4,8 @@ import FastImage from 'react-native-fast-image';
 import { ICustomImageProps } from './custom-image.typings';
 
 import { StyledCustomImage as Styled } from './custom-image.styles';
+import { IMAGES } from './custom-image.map';
+import { StyleSheet } from 'react-native/types';
 
 const { priority: fastImagePriority, cacheControl } = FastImage;
 
@@ -12,6 +14,7 @@ export const CustomImage: React.FC<ICustomImageProps> = ({
   height,
   styles,
   source,
+  type,
   resizeMode = 'contain',
   priority = 'normal',
   cache = 'immutable',
@@ -21,11 +24,15 @@ export const CustomImage: React.FC<ICustomImageProps> = ({
   return (
     <Styled.Image
       borderRadius={borderRadius}
-      source={{
-        ...source,
-        priority: fastImagePriority[priority],
-        cache: cacheControl[cache],
-      }}
+      source={
+        type
+          ? IMAGES[type]
+          : {
+              ...source,
+              priority: fastImagePriority[priority],
+              cache: cacheControl[cache],
+            }
+      }
       height={height}
       width={width}
       styles={styles}

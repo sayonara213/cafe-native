@@ -10,4 +10,7 @@ export const APP_ROUTES = {
     profile: 'Profile',
     orders: 'Orders',
   },
+  user: {
+    editProfile: 'Edit Profile',
+  },
 };

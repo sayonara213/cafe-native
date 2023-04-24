@@ -7,16 +7,18 @@ import { Icon, TIconNames } from '@components/atoms/Icon';
 
 import { theme } from '@theme/theme';
 import * as Styled from './header.styled';
+import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 
 interface HeaderProps {
   isAuth: boolean;
-  headerProps: StackHeaderProps;
+  headerProps: StackHeaderProps | BottomTabHeaderProps;
 }
 
 const headerButtons: TIconNames[] = ['notification', 'cart', 'search'];
 
 const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
   const { route, navigation } = headerProps;
+
   const goBack = () => {
     navigation.goBack();
   };

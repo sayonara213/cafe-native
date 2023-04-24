@@ -1,3 +1,5 @@
+import { IAddress } from '@typings/types.address';
+
 export interface IUser {
   id: string;
   name: string;
@@ -8,8 +10,16 @@ export interface IUser {
   addresses: IAddress[];
 }
 
-export interface IAddress {
-  id: string;
+export interface IUserState {
+  user: IUser;
+  access_token: string;
+}
+
+export interface IAddInfo {
+  name: string;
+  phone: string;
+}
+
+export interface ISetAddressActive {
   addressName: string;
-  isActive: boolean;
 }

@@ -34,3 +34,9 @@ export const additionalValidationSchema = Yup.object().shape({
   username: username,
   phone: phone,
 });
+
+export const editProfileValidationSchema = Yup.object().shape({
+  username: username,
+  email: email,
+  phone: phone,
+});

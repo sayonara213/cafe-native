@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { APP_ROUTES } from '@constants/routes';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import Auth from '@screens/auth/auth';
-import Header from '@components/organisms/Header/header';
-import { useAppSelector } from '@services/hooks/redux.hook';
-import AuthAdditional from '@screens/authAdditional/authAdditional';
+import AuthAdditional from '@screens/auth-additional/authAdditional';
+
+import EditProfile from '@screens/edit-profile/edit-profile';
 import { HomeStack } from './molecules/home-stack';
+import Header from '@components/organisms/Header/header';
+
+import { useAppSelector } from '@services/hooks/redux.hook';
+import { APP_ROUTES } from '@constants/routes';
 
 const RootStack = createStackNavigator();
 
@@ -23,9 +27,14 @@ export const RootNavigator = () => {
           <RootStack.Screen
             name={APP_ROUTES.main.home}
             component={HomeStack}
-            options={{ gestureEnabled: false }}
+            options={{ gestureEnabled: false, headerShown: false }}
           />
           <RootStack.Screen name={APP_ROUTES.auth.authAdditional} component={AuthAdditional} />
+          <RootStack.Screen
+            name={APP_ROUTES.user.editProfile}
+            component={EditProfile}
+            options={{ gestureEnabled: false }}
+          />
         </RootStack.Group>
       ) : (
         <RootStack.Group
