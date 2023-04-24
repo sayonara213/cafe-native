@@ -19,6 +19,5 @@ export const API_ROUTES = {
     getAddresses: '/address/user',
     updateUser: '/user',
     updateAvatar: '/user/photo',
-    updateAddress: '/address',
   },
 };

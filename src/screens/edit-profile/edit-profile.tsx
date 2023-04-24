@@ -53,7 +53,7 @@ const EditProfile: React.FC = () => {
           <HideKeyboard>
             <Styled.EditProfileForm>
               {editProfileList.map((item) => (
-                <Styled.EditProfileInputWrapper key={item.title}>
+                <Styled.EditProfileInputWrapper>
                   <CustomText fontFamily="Roboto-Medium" fontSize={16} textAlign="left">
                     {item.title}
                   </CustomText>

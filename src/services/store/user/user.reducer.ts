@@ -1,6 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAddInfo, ISetAddressActive, IUser, IUserState } from '../user/user.types';
+import { IUser } from '../user/user.types';
 import { IAddress } from '@typings/types.address';
+
+interface IUserState {
+  user: IUser;
+  access_token: string;
+}
+
+interface IAddInfo {
+  name: string;
+  phone: string;
+}
 
 export const initialUser: IUserState = {
   user: {
@@ -43,17 +53,9 @@ const userSlice = createSlice({
       state.user = initialUser.user;
       state.access_token = initialUser.access_token;
     },
-    setAddressActive: (state: IUserState, { payload }: PayloadAction<ISetAddressActive>) => {
-      const { addressName } = payload;
-      const addressIndex = state.user.addresses.findIndex(
-        (address) => address.addressName === addressName,
-      );
-      state.user.addresses[addressIndex].isActive = !state.user.addresses[addressIndex].isActive;
-    },
   },
 });
 
-export const { setUser, logOut, addInfo, setAddresses, updateUser, setAddressActive } =
-  userSlice.actions;
+export const { setUser, logOut, addInfo, setAddresses, updateUser } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

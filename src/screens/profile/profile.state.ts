@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from '@services/hooks/redux.hook';
 import { setAddresses, setUser, logOut } from '@services/store/user';
 import { IUser } from '@services/store/user/user.types';
 import { IAddress } from '@typings/types.address';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
 export const useProfileState = () => {
   const [refreshing, setRefreshing] = useState(false);
@@ -48,10 +48,6 @@ export const useProfileState = () => {
   const editProfile = () => {
     navigate(APP_ROUTES.user.editProfile as never);
   };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   return {
     user,
