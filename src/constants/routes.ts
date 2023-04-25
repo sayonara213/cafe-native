@@ -9,6 +9,7 @@ export const APP_ROUTES = {
     main: 'Main',
     profile: 'Profile',
     orders: 'Orders',
+    cart: 'Cart',
   },
   user: {
     editProfile: 'Edit Profile',

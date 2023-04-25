@@ -1,29 +1,40 @@
 import React from 'react';
 
-import { IMenu } from '@typings/types.menu';
-import { IProduct } from '@typings/types.products';
-
-import * as Styled from './main-list-item.styled';
 import { CustomImage } from '@components/atoms/CustomImage';
 import CustomText from '@components/atoms/CustomText/CustomText';
 import CustomButton from '@components/atoms/CustomButton/CustomButton';
 import Spacer from '@components/atoms/Spacer/Spacer';
-import { itemsShadow } from '@theme/shadows';
 import { BottomSheet } from '@components/atoms/bottom-sheet';
-import { useBottomSheet } from '@services/hooks/bottom-tab.hook';
 import BottomSheetHeader from '../bottom-sheet-header/bottom-sheet-header';
 import GoodsInfo from '@screens/main/molecules/goods-info/goods-info';
 
-interface MainListItemProps {
-  item: IProduct | IMenu;
-  index: number;
-}
+import { useAppDispatch } from '@services/hooks/redux.hook';
+import { useBottomSheet } from '@services/hooks/bottom-tab.hook';
+import { addItemToCart } from '@services/store/cart/cart.reducer';
+
+import { IProduct } from '@typings/types.products';
+import { IMenu } from '@typings/types.menu';
+import { MainListItemProps } from './main-list-item.types';
+
+import * as Styled from './main-list-item.styled';
+import { itemsShadow } from '@theme/shadows';
 
 const MainListItem: React.FC<MainListItemProps> = ({ item, index }) => {
   const { ref, open } = useBottomSheet();
+  const dispatch = useAppDispatch();
 
   const checkIfProduct = (good: IProduct | IMenu): good is IProduct => {
     return 'ingredients' in good;
+  };
+
+  const addToCart = () => {
+    const good = {
+      id: item.id,
+      quantity: 1,
+      price: item.price,
+      isProduct: checkIfProduct(item),
+    };
+    dispatch(addItemToCart(good));
   };
 
   return (
@@ -55,7 +66,7 @@ const MainListItem: React.FC<MainListItemProps> = ({ item, index }) => {
         </CustomText>
       </Styled.PriceWrap>
       <Spacer size={10} />
-      <CustomButton>TO CART</CustomButton>
+      <CustomButton onPress={addToCart}>TO CART</CustomButton>
 
       <BottomSheet
         snapPoints={['90%']}
