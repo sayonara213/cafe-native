@@ -1,14 +1,17 @@
+import { useState } from 'react';
+
 import { API_ROUTES } from '@constants/config';
+
 import { getRequest } from '@services/api.service';
+
 import { IAllergen } from '@typings/types.allergens';
 import { IIngredient } from '@typings/types.ingredient';
 import { IMenu } from '@typings/types.menu';
 import { IProduct } from '@typings/types.products';
-import { useState } from 'react';
 
 export const useGoodsInfoState = (goodId: string) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [goodItem, setGoodItem] = useState<IProduct | IMenu>();
+  const [goodItem, setGoodItem] = useState<IProduct | IMenu>({} as IProduct | IMenu);
   const [allergens, setAllergens] = useState<string[]>([]);
   const [contains, setContains] = useState<string[]>([]);
 

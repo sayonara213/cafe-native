@@ -1,19 +1,25 @@
 import React, { useEffect } from 'react';
 
+import { ActivityIndicator } from 'react-native';
+
 import { CustomImage } from '@components/atoms/CustomImage';
+import CustomText from '@components/atoms/CustomText/CustomText';
+import Spacer from '@components/atoms/Spacer/Spacer';
+import CustomButton from '@components/atoms/CustomButton/CustomButton';
+
+import { addItemToCart } from '@services/store/cart/cart.reducer';
+import { useGoodsInfoState } from './goods-info.state';
+import { useAppDispatch } from '@services/hooks/redux.hook';
 
 import { GoodsInfoProps } from './goods-info.types';
 
 import * as Styled from './goods-info.styled';
-import CustomText from '@components/atoms/CustomText/CustomText';
-import { ActivityIndicator } from 'react-native';
-import Spacer from '@components/atoms/Spacer/Spacer';
-import { useGoodsInfoState } from './goods-info.state';
-import CustomButton from '@components/atoms/CustomButton/CustomButton';
 
 const GoodsInfo: React.FC<GoodsInfoProps> = ({ goodId, isProduct }) => {
   const { fetchMenu, fetchProduct, isLoading, goodItem, allergens, contains } =
     useGoodsInfoState(goodId);
+
+  const dispatch = useAppDispatch();
 
   const goodsInfoList = [
     {
@@ -26,9 +32,21 @@ const GoodsInfo: React.FC<GoodsInfoProps> = ({ goodId, isProduct }) => {
     },
   ];
 
+  const addToCart = () => {
+    const good = {
+      id: goodId,
+      quantity: 1,
+      price: goodItem.price,
+      isProduct: isProduct,
+    };
+    dispatch(addItemToCart(good));
+  };
+
+  console.log(123);
+
   useEffect(() => {
     isProduct ? fetchProduct() : fetchMenu();
-  }, [isProduct, fetchProduct, fetchMenu]);
+  }, [isProduct]);
 
   if (isLoading) {
     return (
@@ -71,7 +89,7 @@ const GoodsInfo: React.FC<GoodsInfoProps> = ({ goodId, isProduct }) => {
         </CustomText>
       </Styled.GoodsPriceWrap>
       <Spacer size={20} />
-      <CustomButton>TO CART</CustomButton>
+      <CustomButton onPress={addToCart}>TO CART</CustomButton>
     </Styled.GoodsInfoContainer>
   );
 };

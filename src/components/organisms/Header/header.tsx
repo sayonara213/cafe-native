@@ -3,24 +3,27 @@ import React from 'react';
 import { StackHeaderProps } from '@react-navigation/stack';
 
 import CustomText from '@components/atoms/CustomText/CustomText';
-import { Icon, TIconNames } from '@components/atoms/Icon';
+import { Icon } from '@components/atoms/Icon';
 
 import { theme } from '@theme/theme';
 import * as Styled from './header.styled';
 import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
+import { APP_ROUTES } from '@constants/routes';
 
 interface HeaderProps {
   isAuth: boolean;
   headerProps: StackHeaderProps | BottomTabHeaderProps;
 }
 
-const headerButtons: TIconNames[] = ['notification', 'cart', 'search'];
-
 const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
   const { route, navigation } = headerProps;
 
   const goBack = () => {
     navigation.goBack();
+  };
+
+  const goToCart = () => {
+    navigation.navigate(APP_ROUTES.main.cart);
   };
 
   return (
@@ -40,9 +43,9 @@ const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
       </Styled.TitleContainer>
       {!isAuth && (
         <Styled.HeaderButtonContainer>
-          {headerButtons.map((headerButton) => (
-            <Icon type={headerButton} size={20} key={headerButton} />
-          ))}
+          <Icon type={'notification'} size={20} />
+          <Icon type={'cart'} size={20} onPress={goToCart} />
+          <Icon type={'search'} size={20} />
         </Styled.HeaderButtonContainer>
       )}
     </Styled.HeaderContainer>

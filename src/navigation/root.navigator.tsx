@@ -11,6 +11,7 @@ import Header from '@components/organisms/Header/header';
 
 import { useAppSelector } from '@services/hooks/redux.hook';
 import { APP_ROUTES } from '@constants/routes';
+import Cart from '@screens/cart/cart';
 
 const RootStack = createStackNavigator();
 
@@ -33,6 +34,11 @@ export const RootNavigator = () => {
           <RootStack.Screen
             name={APP_ROUTES.user.editProfile}
             component={EditProfile}
+            options={{ gestureEnabled: false }}
+          />
+          <RootStack.Screen
+            name={APP_ROUTES.main.cart}
+            component={Cart}
             options={{ gestureEnabled: false }}
           />
         </RootStack.Group>

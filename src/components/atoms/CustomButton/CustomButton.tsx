@@ -12,6 +12,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   onPress,
   onLongPress,
   icon,
+  width = '100%',
   contentSide = 'center',
 }) => {
   const handlePress = () => onPress?.();
@@ -24,7 +25,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onLongPress={handleLongPress}
       activeOpacity={0.8}
       type={type}
-      style={{ justifyContent: contentSide }}>
+      style={{ justifyContent: contentSide, width: width }}>
       {icon && <Icon type={icon} style={{ marginHorizontal: 5 }} />}
       <Styled.CustomButtonText type={type}>{children}</Styled.CustomButtonText>
     </Styled.CustomButtonContainer>
