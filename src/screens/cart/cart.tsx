@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { useNavigation } from '@react-navigation/native';
+
 import CustomText from '@components/atoms/CustomText/CustomText';
 import CustomButton from '@components/atoms/CustomButton/CustomButton';
 import Spacer from '@components/atoms/Spacer/Spacer';
@@ -10,10 +12,12 @@ import { setTotalPrice } from '@services/store/cart/cart.reducer';
 
 import { footerShadow } from '@theme/shadows';
 import * as Styled from './cart.styled';
+import { APP_ROUTES } from '@constants/routes';
 
 const Cart: React.FC = () => {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     const totalPrice = cart.cartItems.reduce((acc, item) => {
@@ -21,6 +25,10 @@ const Cart: React.FC = () => {
     }, 0);
     dispatch(setTotalPrice(totalPrice));
   }, [cart, dispatch]);
+
+  const handleContinue = () => {
+    navigate(APP_ROUTES.main.order as never);
+  };
 
   return (
     <Styled.CartContainer>
@@ -47,7 +55,7 @@ const Cart: React.FC = () => {
           </CustomText>
         </Styled.CartFooterText>
         <Spacer size={16} />
-        <CustomButton>CONTINUE</CustomButton>
+        <CustomButton onPress={handleContinue}>CONTINUE</CustomButton>
       </Styled.CartFooter>
     </Styled.CartContainer>
   );
