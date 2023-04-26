@@ -22,3 +22,20 @@ export const TitleContainer = styled.View`
   flex: 1;
   align-items: center;
 `;
+
+export const IconWrap = styled.View`
+  width: 20px;
+  height: 20px;
+  position: relative;
+`;
+
+export const IconBadge = styled.View`
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors.purple};
+`;

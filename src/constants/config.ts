@@ -21,4 +21,7 @@ export const API_ROUTES = {
     updateAvatar: '/user/photo',
     updateAddress: '/address',
   },
+  order: {
+    create: '/order/add',
+  },
 };

@@ -9,6 +9,7 @@ import { theme } from '@theme/theme';
 import * as Styled from './header.styled';
 import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 import { APP_ROUTES } from '@constants/routes';
+import { useAppSelector } from '@services/hooks/redux.hook';
 
 interface HeaderProps {
   isAuth: boolean;
@@ -17,6 +18,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
   const { route, navigation } = headerProps;
+
+  const cart = useAppSelector((store) => store.cart.cartItems);
 
   const goBack = () => {
     navigation.goBack();
@@ -44,7 +47,16 @@ const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
       {!isAuth && (
         <Styled.HeaderButtonContainer>
           <Icon type={'notification'} size={20} />
-          <Icon type={'cart'} size={20} onPress={goToCart} />
+          <Styled.IconWrap>
+            <Icon type={'cart'} size={20} onPress={goToCart} />
+            {cart.length > 0 && (
+              <Styled.IconBadge>
+                <CustomText fontSize={8} color={theme.colors.primary}>
+                  {cart.length}
+                </CustomText>
+              </Styled.IconBadge>
+            )}
+          </Styled.IconWrap>
           <Icon type={'search'} size={20} />
         </Styled.HeaderButtonContainer>
       )}

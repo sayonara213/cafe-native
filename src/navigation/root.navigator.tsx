@@ -12,6 +12,9 @@ import Header from '@components/organisms/Header/header';
 import { useAppSelector } from '@services/hooks/redux.hook';
 import { APP_ROUTES } from '@constants/routes';
 import Cart from '@screens/cart/cart';
+import Order from '@screens/order/order';
+import OrderConfirmation from '@screens/order-confirmation/order-confirmation';
+import { IAddress } from '@typings/types.address';
 
 const RootStack = createStackNavigator();
 
@@ -41,22 +44,25 @@ export const RootNavigator = () => {
             component={Cart}
             options={{ gestureEnabled: false }}
           />
+          <RootStack.Screen
+            name={APP_ROUTES.main.order}
+            component={Order}
+            options={{ gestureEnabled: false }}
+          />
+          <RootStack.Screen
+            name={APP_ROUTES.main.orderConfirmation}
+            component={OrderConfirmation}
+            initialParams={{ address: {} as IAddress, deliveryDate: '', comment: '' }}
+            options={{ gestureEnabled: false }}
+          />
         </RootStack.Group>
       ) : (
         <RootStack.Group
           screenOptions={{
             header: (props) => <Header isAuth={true} headerProps={props} />,
           }}>
-          <RootStack.Screen
-            name={APP_ROUTES.auth.login}
-            component={Auth}
-            initialParams={{ isLogin: true }}
-          />
-          <RootStack.Screen
-            name={APP_ROUTES.auth.register}
-            component={Auth}
-            initialParams={{ isLogin: false }}
-          />
+          <RootStack.Screen name={APP_ROUTES.auth.login} component={Auth} />
+          <RootStack.Screen name={APP_ROUTES.auth.register} component={Auth} />
         </RootStack.Group>
       )}
     </RootStack.Navigator>
