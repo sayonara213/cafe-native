@@ -66,14 +66,12 @@ const OrderConfirmation: React.FC = () => {
       deliveryDate: deliveryDate,
       comment: comment,
     };
-    console.log(order);
-
     try {
       await postRequest(API_ROUTES.order.create, order);
       navigate(APP_ROUTES.main.home as never);
       dispatch(clearCart());
-    } catch (e: any) {
-      console.log(e);
+    } catch {
+      console.log('Error while creating order');
     }
   };
 
@@ -84,7 +82,7 @@ const OrderConfirmation: React.FC = () => {
           <Styled.OrderConfirmationSection key={orderInfo.title}>
             <CustomText fontSize={24}>{orderInfo.title}</CustomText>
             {orderInfo.data.map((data) => (
-              <Styled.OrderConfirmationItem>
+              <Styled.OrderConfirmationItem key={data.title}>
                 <CustomText fontSize={14} fontFamily="Roboto-Medium">
                   {data.title}
                 </CustomText>
