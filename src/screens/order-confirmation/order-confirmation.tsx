@@ -59,14 +59,14 @@ const OrderConfirmation: React.FC = () => {
   ];
 
   const onSubmit = async () => {
+    const itemIds = cart.cartItems.map(({ price, ...item }) => item);
     const order = {
       userId: user.id,
-      itemIds: cart.cartItems.map(({ price, ...item }) => item),
+      itemIds: itemIds,
       addressId: address.id,
       deliveryDate: deliveryDate,
       comment: comment,
     };
-    console.log(order);
 
     try {
       await postRequest(API_ROUTES.order.create, order);
@@ -84,7 +84,7 @@ const OrderConfirmation: React.FC = () => {
           <Styled.OrderConfirmationSection key={orderInfo.title}>
             <CustomText fontSize={24}>{orderInfo.title}</CustomText>
             {orderInfo.data.map((data) => (
-              <Styled.OrderConfirmationItem>
+              <Styled.OrderConfirmationItem key={data.title}>
                 <CustomText fontSize={14} fontFamily="Roboto-Medium">
                   {data.title}
                 </CustomText>

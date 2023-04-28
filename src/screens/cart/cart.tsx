@@ -41,7 +41,7 @@ const Cart: React.FC = () => {
       ) : (
         <Styled.CartBody>
           {cart.cartItems.map((item) => (
-            <CartItem item={item} key={item.id} />
+            <CartItem item={item} key={item.itemId} />
           ))}
         </Styled.CartBody>
       )}
