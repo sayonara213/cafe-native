@@ -23,5 +23,9 @@ export const API_ROUTES = {
   },
   order: {
     create: '/order/add',
+    getList: '/order/list',
+  },
+  notifications: {
+    setToken: '/user-device/save',
   },
 };

@@ -1,7 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ICart, ICartState } from './cart.types';
-import { IMenu } from '@typings/types.menu';
-import { IProduct } from '@typings/types.products';
 
 const initialState: ICartState = {
   cartItems: [],
@@ -14,7 +12,7 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart(state, { payload }: PayloadAction<ICart>) {
       const item = payload;
-      const itemExists = state.cartItems.find((i) => i.id === item.id);
+      const itemExists = state.cartItems.find((i) => i.itemId === item.itemId);
 
       if (itemExists) {
         itemExists.quantity += item.quantity;
@@ -24,18 +22,18 @@ const cartSlice = createSlice({
     },
     removeItemFromCart(state, { payload }: PayloadAction<ICart>) {
       const item = payload;
-      const itemExists = state.cartItems.find((i) => i.id === item.id);
+      const itemExists = state.cartItems.find((i) => i.itemId === item.itemId);
 
       if (itemExists) {
         itemExists.quantity -= item.quantity;
         if (itemExists.quantity === 0) {
-          state.cartItems = state.cartItems.filter((i) => i.id !== item.id);
+          state.cartItems = state.cartItems.filter((i) => i.itemId !== item.itemId);
         }
       }
     },
     incrementItemQuantity(state, { payload }: PayloadAction<ICart>) {
       const item = payload;
-      const itemExists = state.cartItems.find((i) => i.id === item.id);
+      const itemExists = state.cartItems.find((i) => i.itemId === item.itemId);
 
       if (itemExists) {
         itemExists.quantity += 1;
@@ -43,12 +41,12 @@ const cartSlice = createSlice({
     },
     decrementItemQuantity(state, { payload }: PayloadAction<ICart>) {
       const item = payload;
-      const itemExists = state.cartItems.find((i) => i.id === item.id);
+      const itemExists = state.cartItems.find((i) => i.itemId === item.itemId);
 
       if (itemExists) {
         itemExists.quantity -= 1;
         if (itemExists.quantity === 0) {
-          state.cartItems = state.cartItems.filter((i) => i.id !== item.id);
+          state.cartItems = state.cartItems.filter((i) => i.itemId !== item.itemId);
         }
       }
     },

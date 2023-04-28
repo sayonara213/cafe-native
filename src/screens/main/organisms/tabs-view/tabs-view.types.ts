@@ -15,6 +15,7 @@ export interface ITabsViewProps {
   title?: string;
   screens: IRenderScene;
   routes: TabRoute[];
+  isFilter?: boolean;
 }
 
 export interface ITabButtonProps {

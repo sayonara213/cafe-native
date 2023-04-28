@@ -29,7 +29,7 @@ const MainListItem: React.FC<MainListItemProps> = ({ item, index }) => {
 
   const addToCart = () => {
     const good = {
-      id: item.id,
+      itemId: item.id,
       quantity: 1,
       price: item.price,
       isProduct: checkIfProduct(item),

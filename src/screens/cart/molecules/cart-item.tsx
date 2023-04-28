@@ -29,7 +29,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const fetchItem = async () => {
     setIsLoading(true);
     const apiRoute = item.isProduct ? API_ROUTES.goods.getProduct : API_ROUTES.goods.getMenu;
-    const good = await getRequest(`${apiRoute}/${item.id}`);
+    const good = await getRequest(`${apiRoute}/${item.itemId}`);
     setFetchedItem(good);
     setIsLoading(false);
   };

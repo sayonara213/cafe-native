@@ -34,15 +34,13 @@ const GoodsInfo: React.FC<GoodsInfoProps> = ({ goodId, isProduct }) => {
 
   const addToCart = () => {
     const good = {
-      id: goodId,
+      itemId: goodId,
       quantity: 1,
       price: goodItem.price,
       isProduct: isProduct,
     };
     dispatch(addItemToCart(good));
   };
-
-  console.log(123);
 
   useEffect(() => {
     isProduct ? fetchProduct() : fetchMenu();

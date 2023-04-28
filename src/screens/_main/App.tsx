@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -17,7 +17,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 export const App = () => {
   const store = setupStore();
   const persistor = persistStore(store);
-
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

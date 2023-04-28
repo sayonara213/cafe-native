@@ -9,7 +9,7 @@ import { StyledTabsView as Styled } from './tabs-view.styles';
 import ListOptions from '@screens/main/molecules/list-options/list-options';
 
 export const TabsView: React.FC<ITabsViewProps> = (props) => {
-  const { routes, screens, children = true } = props;
+  const { routes, screens, children = true, isFilter = true } = props;
 
   const [index, setIndex] = useState<number>(0);
 
@@ -36,7 +36,7 @@ export const TabsView: React.FC<ITabsViewProps> = (props) => {
             })}
           </Styled.TabBar>
         </Styled.TabsView>
-        <ListOptions />
+        {isFilter && <ListOptions />}
       </Styled.TabContainer>
     );
   };
