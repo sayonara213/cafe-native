@@ -59,9 +59,10 @@ const OrderConfirmation: React.FC = () => {
   ];
 
   const onSubmit = async () => {
+    const itemIds = cart.cartItems.map(({ price, ...item }) => item);
     const order = {
       userId: user.id,
-      itemIds: cart.cartItems.map(({ price, ...item }) => item),
+      itemIds: itemIds,
       addressId: address.id,
       deliveryDate: deliveryDate,
       comment: comment,
@@ -70,8 +71,8 @@ const OrderConfirmation: React.FC = () => {
       await postRequest(API_ROUTES.order.create, order);
       navigate(APP_ROUTES.main.home as never);
       dispatch(clearCart());
-    } catch {
-      console.log('Error while creating order');
+    } catch (e: any) {
+      console.log(e);
     }
   };
 
