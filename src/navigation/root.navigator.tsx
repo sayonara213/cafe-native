@@ -15,6 +15,8 @@ import Cart from '@screens/cart/cart';
 import Order from '@screens/order/order';
 import OrderConfirmation from '@screens/order-confirmation/order-confirmation';
 import { IAddress } from '@typings/types.address';
+import OrderInfo from '@screens/order-info/order-info';
+import Notifications from '@screens/notifications/notifications';
 
 const RootStack = createStackNavigator();
 
@@ -53,6 +55,17 @@ export const RootNavigator = () => {
             name={APP_ROUTES.main.orderConfirmation}
             component={OrderConfirmation}
             initialParams={{ address: {} as IAddress, deliveryDate: '', comment: '' }}
+            options={{ gestureEnabled: false }}
+          />
+          <RootStack.Screen
+            name={APP_ROUTES.order.orderDetails}
+            component={OrderInfo}
+            options={{ gestureEnabled: false }}
+            initialParams={{ orderId: '' }}
+          />
+          <RootStack.Screen
+            name={APP_ROUTES.main.notifications}
+            component={Notifications}
             options={{ gestureEnabled: false }}
           />
         </RootStack.Group>

@@ -4,7 +4,7 @@ import { CustomBottomTabBar } from './bottom-tab-bar/bottom-tab-bar';
 import Main from '@screens/main/Main';
 import Profile from '@screens/profile/profile';
 import Header from '@components/organisms/Header/header';
-import { useAppSelector } from '@services/hooks/redux.hook';
+import { useAppDispatch, useAppSelector } from '@services/hooks/redux.hook';
 import { useNotifications } from '@services/hooks/notifications.hook';
 import Orders from '@screens/orders/orders';
 
@@ -12,9 +12,8 @@ const Tab = createBottomTabNavigator();
 
 export const HomeStack: React.FC = () => {
   const userId = useAppSelector((state) => state.user.user.id);
-
-  useNotifications(userId);
-
+  const dispatch = useAppDispatch();
+  useNotifications(userId, dispatch);
   return (
     <Tab.Navigator
       tabBar={(props) => <CustomBottomTabBar {...props} />}

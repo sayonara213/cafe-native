@@ -5,16 +5,18 @@ import { persistCombineReducers } from 'redux-persist';
 import { userReducer } from './user/user.reducer';
 import goodsReducer from './goods/goods.reducer';
 import cartReducer from './cart/cart.reducer';
+import { notificationsReducer } from './notifications/notifications.reducer';
 
 const config = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['goods', 'cart'],
+  blacklist: ['goods', 'cart', 'notifications'],
 };
 const reducer = persistCombineReducers(config, {
   user: userReducer,
   goods: goodsReducer,
   cart: cartReducer,
+  notifications: notificationsReducer,
 });
 
 export const setupStore = () => {

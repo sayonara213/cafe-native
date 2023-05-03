@@ -28,3 +28,8 @@ export const OrderConfirmationTotalWrap = styled.View`
   justify-content: space-between;
   margin-bottom: 16px;
 `;
+
+export const OrderConfirmationFooter = styled.View`
+  padding-top: 16px;
+  gap: 16px;
+`;

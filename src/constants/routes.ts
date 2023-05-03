@@ -12,8 +12,12 @@ export const APP_ROUTES = {
     cart: 'Cart',
     order: 'Order',
     orderConfirmation: 'Order Confirmation',
+    notifications: 'Notifications',
   },
   user: {
     editProfile: 'Edit Profile',
+  },
+  order: {
+    orderDetails: 'Order Details',
   },
 };

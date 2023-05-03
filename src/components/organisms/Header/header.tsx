@@ -20,13 +20,17 @@ const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
   const { route, navigation } = headerProps;
 
   const cart = useAppSelector((store) => store.cart.cartItems);
-
+  const notifications = useAppSelector((store) => store.notifications.notifications);
   const goBack = () => {
     navigation.goBack();
   };
 
   const goToCart = () => {
     navigation.navigate(APP_ROUTES.main.cart);
+  };
+
+  const goToNotifications = () => {
+    navigation.navigate(APP_ROUTES.main.notifications as never);
   };
 
   return (
@@ -46,7 +50,10 @@ const Header: React.FC<HeaderProps> = ({ isAuth, headerProps }) => {
       </Styled.TitleContainer>
       {!isAuth && (
         <Styled.HeaderButtonContainer>
-          <Icon type={'notification'} size={20} />
+          <Styled.IconWrap>
+            <Icon type={'notification'} size={20} onPress={goToNotifications} />
+            {notifications.some((notification) => !notification.isSeen) && <Styled.IconBadge />}
+          </Styled.IconWrap>
           <Styled.IconWrap>
             <Icon type={'cart'} size={20} onPress={goToCart} />
             {cart.length > 0 && (

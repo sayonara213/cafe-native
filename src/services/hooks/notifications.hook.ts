@@ -3,19 +3,36 @@ import { postRequest } from '@services/api.service';
 import { useEffect } from 'react';
 import { PermissionsAndroid, Alert } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
+import { useNavigation } from '@react-navigation/native';
+import { APP_ROUTES } from '@constants/routes';
+import { fetchNotifications } from '@services/store/notifications/notifications.reducer';
 
-export const useNotifications = (userId: string) => {
+export const useNotifications = (userId: string, dispatch: any) => {
+  const { navigate } = useNavigation();
   useEffect(() => {
     requestPermission();
     checkToken();
 
+    dispatch(fetchNotifications(userId));
+
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       console.log('Message handled in the background!', remoteMessage);
     });
-    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+    const unsubscribeMessage = messaging().onMessage(async (remoteMessage) => {
       Alert.alert(remoteMessage?.data?.title!, remoteMessage?.data?.message!);
+      dispatch(fetchNotifications(userId));
     });
-    return unsubscribe;
+    const unsubscribeNotification = messaging().onNotificationOpenedApp((remoteMessage) => {
+      dispatch(fetchNotifications(userId));
+      navigate(
+        APP_ROUTES.order.orderDetails as never,
+        { orderId: remoteMessage?.data?.value } as never,
+      );
+    });
+    return () => {
+      unsubscribeMessage();
+      unsubscribeNotification();
+    };
   }, []);
 
   const checkToken = async () => {
