@@ -67,7 +67,6 @@ const OrderConfirmation: React.FC = () => {
       deliveryDate: deliveryDate,
       comment: comment,
     };
-
     try {
       await postRequest(API_ROUTES.order.create, order);
       navigate(APP_ROUTES.main.home as never);
