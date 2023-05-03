@@ -6,6 +6,7 @@ import * as Styled from './orders-list.styled';
 import { itemsShadow } from '@theme/shadows';
 import OrderListItem from '@screens/orders/atoms/order-list-item/order-list-item';
 import { RefreshControl } from 'react-native-gesture-handler';
+
 const OrdersList: React.FC<OrdersListProps> = ({ orders, onRefresh }) => {
   const [refreshing, setRefreshing] = useState(false);
 

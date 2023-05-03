@@ -24,8 +24,13 @@ export const API_ROUTES = {
   order: {
     create: '/order/add',
     getList: '/order/list',
+    get: '/order/get',
+    rate: '/order/rating',
+    status: '/order/status',
   },
   notifications: {
     setToken: '/user-device/save',
+    fetch: '/notifications/list/user',
+    setRead: '/notifications/update',
   },
 };
